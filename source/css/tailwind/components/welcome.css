@@ -1,0 +1,19 @@
+.welcome {
+  @apply text-indigo-light p-5 bg-grey-light cursor-pointer;
+}
+
+.welcome:hover {
+  @apply text-pink-light;
+}
+
+@screen md {
+  .welcome {
+    @apply p-10;
+  }
+}
+
+@screen lg {
+  .welcome {
+    @apply p-20;
+  }
+}

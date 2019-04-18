@@ -1,7 +1,7 @@
 # patternlab-project
 This is the base project for the PatternLab project using the PostCSS and Tailwind.
 
-## system requirement
+## system requirements
 You can install node and npm [here](https://nodejs.org).
 * node
 * npm
@@ -71,3 +71,5 @@ function processPostCSS () {
     // .pipe(browserSync.reload({ stream: true })); leave this as commented
 }
 ```
+## other notes
+> Happy Coding!

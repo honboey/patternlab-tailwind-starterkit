@@ -71,5 +71,13 @@ function processPostCSS () {
     // .pipe(browserSync.reload({ stream: true })); leave this as commented
 }
 ```
+
+## reference sites
+- [tailwind](https://tailwindcss.com/docs/what-is-tailwind/)
+- [postcss](https://postcss.org/)
+- [patternlab](https://patternlab.io/docs/)
+- [gulp](https://gulpjs.com/)
+- [node](https://nodejs.org/dist/latest-v10.x/docs/api/)
+
 ## other notes
 > Happy Coding!

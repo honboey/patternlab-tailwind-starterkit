@@ -1,2 +1,5 @@
+@import "tailwindcss/preflight";
+@import "tailwindcss/components";
 @import "./components/welcome.css";
 @import "./components/tuesday.css";
+@import "tailwindcss/utilities";

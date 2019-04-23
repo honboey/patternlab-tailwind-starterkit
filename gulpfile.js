@@ -47,7 +47,7 @@ gulp.task('pl-copy:font', function(){
 // CSS Copy
 // only copy style.pkgd.css and patternlab-scaffolding.css
 gulp.task('pl-copy:css', function(){
-  return gulp.src(resolvePath(paths().source.css) + '/style.pkgd.css')
+  return gulp.src(resolvePath(paths().source.root) + '/dist/style.pkgd.css')
     .pipe(gulp.src(resolvePath(paths().source.css) + '/pattern-scaffolding.css'))
     .pipe(gulp.dest(resolvePath(paths().public.css)))
     .pipe(browserSync.stream());
@@ -165,7 +165,7 @@ function reloadJS() {
 }
 
 /******************************************************
- * TAILWIND AND POSTCSS TASKScss
+ * TAILWIND AND POSTCSS TASKS
 ******************************************************/
 
 gulp.task('tailwind-postcss', function(){
@@ -179,13 +179,14 @@ gulp.task('tailwind-postcss', function(){
       assets({
         basePath: 'source/',
         loadPaths: ['images/']
-      })
+      }),
+      require('postcss-clean')
     ]))
     .pipe(rename('style.pkgd.css'))
     .pipe(gulp.dest('./source/dist'));
 });
 
-gulp.task('tailwind-postcss:build', gulp.series('patternlab:build', function(done){
+gulp.task('tailwind-postcss:build', gulp.series('tailwind-postcss', 'patternlab:build', function(done) {
   done();
 }));
 

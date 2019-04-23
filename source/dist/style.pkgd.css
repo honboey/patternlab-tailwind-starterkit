@@ -1,0 +1,13 @@
+/* @tailwind preflight;
+
+@tailwind components;
+
+@tailwind utilities; */
+
+.welcome {
+  border: 2px solid pink;
+}
+
+.tuesday {
+  border: solid 10px yellow;
+}

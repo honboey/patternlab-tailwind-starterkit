@@ -45,8 +45,10 @@ gulp.task('pl-copy:font', function(){
 });
 
 // CSS Copy
+// only copy style.pkgd.css and patternlab-scaffolding.css
 gulp.task('pl-copy:css', function(){
-  return gulp.src(resolvePath(paths().source.css) + '/*.css')
+  return gulp.src(resolvePath(paths().source.css) + '/style.pkgd.css')
+    .pipe(gulp.src(resolvePath(paths().source.css) + '/pattern-scaffolding.css'))
     .pipe(gulp.dest(resolvePath(paths().public.css)))
     .pipe(browserSync.stream());
 });
@@ -162,8 +164,12 @@ function reloadJS() {
   browserSync.reload('*.js');
 }
 
-function processPostCSS () {
-  return gulp.src('./source/css/tailwind/tailwind.src.css')
+/******************************************************
+ * TAILWIND AND POSTCSS TASKScss
+******************************************************/
+
+gulp.task('tailwind-postcss', function(){
+  return gulp.src('./source/css/style.css')
     .pipe(postcss([
       require('postcss-import'),
       require('postcss-nested'),
@@ -175,15 +181,18 @@ function processPostCSS () {
         loadPaths: ['images/']
       })
     ]))
-    .pipe(rename('style.css'))
-    .pipe(gulp.dest('./source/css'));
-    // .pipe(browserSync.reload({ stream: true }));
-}
+    .pipe(rename('style.pkgd.css'))
+    .pipe(gulp.dest('./source/dist'));
+});
+
+gulp.task('tailwind-postcss:build', gulp.series('patternlab:build', function(done){
+  done();
+}));
 
 function watch() {
-  gulp.watch(resolvePath(paths().source.js) + '/**/*.js', { awaitWriteFinish: true }).on('change', gulp.series('pl-copy:js', reloadJS));
-  gulp.watch(resolvePath(paths().source.css) + '/style.css', { awaitWriteFinish: true }).on('change', gulp.series('pl-copy:css', reloadCSS));
-  gulp.watch(resolvePath(paths().source.css) + '/tailwind/**/*.css', { awaitWriteFinish: true }).on('change', gulp.series(processPostCSS));
+  // gulp.watch(resolvePath(paths().source.js) + '/**/*.js', { awaitWriteFinish: true }).on('change', gulp.series('pl-copy:js', reloadJS));
+  gulp.watch(resolvePath(paths().source.css) + '/**/*.css', { awaitWriteFinish: true }).on('change', gulp.series('tailwind-postcss'));
+  gulp.watch(resolvePath(paths().source.root) + '/dist/style.pkgd.css', { awaitWriteFinish: true }).on('change', gulp.series('pl-copy:css', reloadCSS));
   gulp.watch(resolvePath(paths().source.styleguide) + '/**/*.*', { awaitWriteFinish: true }).on('change', gulp.series('pl-copy:styleguide', 'pl-copy:styleguide-css', reloadCSS));
 
   var patternWatches = [
@@ -237,6 +246,6 @@ gulp.task('patternlab:connect', gulp.series(function(done) {
 /******************************************************
  * COMPOUND TASKS
 ******************************************************/
-gulp.task('default', gulp.series('patternlab:build'));
-gulp.task('patternlab:watch', gulp.series('patternlab:build', watch));
-gulp.task('patternlab:serve', gulp.series(processPostCSS, 'patternlab:build', 'patternlab:connect', watch));
+gulp.task('default', gulp.series('tailwind-postcss:build'));
+gulp.task('patternlab:watch', gulp.series('tailwind-postcss:build', watch));
+gulp.task('patternlab:serve', gulp.series('tailwind-postcss:build', 'patternlab:connect', watch));

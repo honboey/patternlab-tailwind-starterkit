@@ -1,5 +1,0 @@
-@import './components/welcome.css';
-
-@tailwind preflight;
-@tailwind components;
-@tailwind utilities;

@@ -3,8 +3,8 @@ This is the base project for the PatternLab project using the PostCSS and Tailwi
 
 ## system requirements
 You can install node and npm [here](https://nodejs.org).
-* node
-* npm
+* node (10.15.3 LTS or later recommended)
+* npm (6.9.0 or later recommended)
 
 ## install & start
 This will install all the dependencies described below section.

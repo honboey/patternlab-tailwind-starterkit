@@ -174,7 +174,7 @@ gulp.task('tailwind-postcss', function(){
       require('postcss-import'),
       require('postcss-nested'),
       require('postcss-preset-env'),
-      tailwindcss('./tailwind.js'),
+      tailwindcss('./tailwind.config.js'),
       require('autoprefixer'),
       assets({
         basePath: 'source/',

@@ -1,5 +1,27 @@
-@import "tailwindcss/preflight";
+/**
+ * This injects Tailwind's base styles and any base styles registered by
+ * plugins.
+ */
+@import "tailwindcss/base";
+
+/**
+ * This injects Tailwind's component classes and any component classes
+ * registered by plugins.
+ */
 @import "tailwindcss/components";
+
+/**
+ * Custom components
+ */
 @import "./components/welcome.css";
 @import "./components/tuesday.css";
+
+/**
+ * This injects Tailwind's utility classes and any utility classes registered
+ * by plugins.
+ */
 @import "tailwindcss/utilities";
+
+/**
+ * Custom utilities
+ */

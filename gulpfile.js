@@ -15,6 +15,7 @@ const assets = require('postcss-assets');
 const postcssPurgecss = require('@fullhuman/postcss-purgecss')({
   content: [
     './source/**/*.mustache',
+    './source/**/*.json',
     './source/**/*.js',
     './public/**/*.html',
     './public/**/*.js'

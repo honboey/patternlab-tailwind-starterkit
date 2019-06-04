@@ -33,6 +33,7 @@ run `npm run build`
 | postcss-nested                 | use nesting like sass for .css                                            |
 | postcss-preset-env             | use future css syntax                                                     |
 | tailwindcss                    | a utility-first css framework for rapidly building custom user interfaces |
+| postcss-purgecss               | tool to remove unused css                                                 |
 
 ## custom styling
 
@@ -51,25 +52,46 @@ run `npm run build`
 ## adding other modules for postcss
 ``` javascript
 // at root, in gulpfile.js
-function processPostCSS () {
-  return gulp.src('./source/css/tailwind/tailwind.src.css')
+gulp.task('tailwind-postcss', function () {
+  return gulp.src('./source/css/style.css')
     .pipe(postcss([
-      // add post css modules here
+      // Add more modules here and
       require('postcss-import'),
       require('postcss-nested'),
       require('postcss-preset-env'),
       tailwindcss('./tailwind.config.js'),
       require('autoprefixer'),
       assets({
-        // modify here to change your assets path
         basePath: 'source/',
         loadPaths: ['images/']
-      })
+      }),
+      require('postcss-clean')
     ]))
-    .pipe(rename('style.css'))
-    .pipe(gulp.dest('./source/css'));
-}
+    .pipe(rename('style.pkgd.css'))
+    .pipe(gulp.dest('./source/dist'));
+});
+
+gulp.task('tailwind-postcss:production', function(){
+  return gulp.src('./source/css/style.css')
+    .pipe(postcss([
+      // Here same time
+      require('postcss-import'),
+      require('postcss-nested'),
+      require('postcss-preset-env'),
+      tailwindcss('./tailwind.config.js'),
+      require('autoprefixer'),
+      assets({
+        basePath: 'source/',
+        loadPaths: ['images/']
+      }),
+      require('postcss-clean'),
+      postcssPurgecss
+    ]))
+    .pipe(rename('style.pkgd.css'))
+    .pipe(gulp.dest('./source/dist'));
+});
 ```
+> PurgeCSS should run only for the production build because added tailwind selector will not be applied when browser is reloaded.
 
 ## reference sites
 - [tailwind](https://tailwindcss.com/docs/what-is-tailwind/)

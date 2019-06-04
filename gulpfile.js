@@ -223,7 +223,7 @@ gulp.task('tailwind-postcss:build:production', gulp.series('tailwind-postcss:pro
 }));
 
 function watch() {
-  // gulp.watch(resolvePath(paths().source.js) + '/**/*.js', { awaitWriteFinish: true }).on('change', gulp.series('pl-copy:js', reloadJS));
+  gulp.watch(resolvePath(paths().source.js) + '/**/*.js', { awaitWriteFinish: true }).on('change', gulp.series('pl-copy:js', reloadJS));
   gulp.watch(resolvePath(paths().source.css) + '/**/*.css', { awaitWriteFinish: true }).on('change', gulp.series('tailwind-postcss'));
   gulp.watch(resolvePath(paths().source.root) + '/dist/style.pkgd.css', { awaitWriteFinish: true }).on('change', gulp.series('pl-copy:css', reloadCSS));
   gulp.watch(resolvePath(paths().source.styleguide) + '/**/*.*', { awaitWriteFinish: true }).on('change', gulp.series('pl-copy:styleguide', 'pl-copy:styleguide-css', reloadCSS));

@@ -58,7 +58,7 @@ function processPostCSS () {
       require('postcss-import'),
       require('postcss-nested'),
       require('postcss-preset-env'),
-      tailwindcss('./tailwind.js'),
+      tailwindcss('./tailwind.config.js'),
       require('autoprefixer'),
       assets({
         // modify here to change your assets path
@@ -68,7 +68,6 @@ function processPostCSS () {
     ]))
     .pipe(rename('style.css'))
     .pipe(gulp.dest('./source/css'));
-    // .pipe(browserSync.reload({ stream: true })); leave this as commented
 }
 ```
 

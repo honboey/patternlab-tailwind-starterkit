@@ -12,6 +12,15 @@ const postcss = require('gulp-postcss');
 const tailwindcss = require('tailwindcss');
 const rename = require('gulp-rename');
 const assets = require('postcss-assets');
+const postcssPurgecss = require('@fullhuman/postcss-purgecss')({
+  content: [
+    './source/**/*.mustache',
+    './source/**/*.js',
+    './public/**/*.html',
+    './public/**/*.js'
+  ],
+  defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || []
+});
 
 function resolvePath(pathInput) {
   return path.resolve(pathInput).replace(/\\/g,"/");
@@ -168,7 +177,7 @@ function reloadJS() {
  * TAILWIND AND POSTCSS TASKS
 ******************************************************/
 
-gulp.task('tailwind-postcss', function(){
+gulp.task('tailwind-postcss', function () {
   return gulp.src('./source/css/style.css')
     .pipe(postcss([
       require('postcss-import'),
@@ -186,7 +195,30 @@ gulp.task('tailwind-postcss', function(){
     .pipe(gulp.dest('./source/dist'));
 });
 
+gulp.task('tailwind-postcss:production', function(){
+  return gulp.src('./source/css/style.css')
+    .pipe(postcss([
+      require('postcss-import'),
+      require('postcss-nested'),
+      require('postcss-preset-env'),
+      tailwindcss('./tailwind.config.js'),
+      require('autoprefixer'),
+      assets({
+        basePath: 'source/',
+        loadPaths: ['images/']
+      }),
+      require('postcss-clean'),
+      postcssPurgecss
+    ]))
+    .pipe(rename('style.pkgd.css'))
+    .pipe(gulp.dest('./source/dist'));
+});
+
 gulp.task('tailwind-postcss:build', gulp.series('tailwind-postcss', 'patternlab:build', function(done) {
+  done();
+}));
+
+gulp.task('tailwind-postcss:build:production', gulp.series('tailwind-postcss:production', 'patternlab:build', function(done) {
   done();
 }));
 
@@ -247,6 +279,6 @@ gulp.task('patternlab:connect', gulp.series(function(done) {
 /******************************************************
  * COMPOUND TASKS
 ******************************************************/
-gulp.task('default', gulp.series('tailwind-postcss:build'));
+gulp.task('default', gulp.series('tailwind-postcss:build:production'));
 gulp.task('patternlab:watch', gulp.series('tailwind-postcss:build', watch));
 gulp.task('patternlab:serve', gulp.series('tailwind-postcss:build', 'patternlab:connect', watch));

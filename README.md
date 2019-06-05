@@ -13,8 +13,8 @@ These instructions are for getting a development version of the project setup on
 This will install all the dependencies described below section.
 There is no need to install gulp globally.
 1. clone this repositoy or download
-2. run `npm install`
-3. run `npm start`
+2. run `yarn`
+3. run `yarn start`
 
 ### Build
 run `npm run build`

@@ -1,22 +1,25 @@
-# patternlab-project
+# Patternlab + Tailwind CSS Starter Kit
 This is the base project for the PatternLab project using the PostCSS and Tailwind.
 
-## system requirements
-You can install node and npm [here](https://nodejs.org).
-* node (10.15.3 LTS or later recommended)
-* npm (6.9.0 or later recommended)
+## Getting Started
+These instructions are for getting a development version of the project setup on a local environment. 
 
-## install & start
+
+### System Requirements
+* Node.js (v10.15.3 LTS or later recommended)
+* Yarn (v1.16.0)
+
+### Installing and Running
 This will install all the dependencies described below section.
 There is no need to install gulp globally.
 1. clone this repositoy or download
 2. run `npm install`
 3. run `npm start`
 
-## build
+### Build
 run `npm run build`
 
-## dependencies
+## Dependencies
 
 | module name                    | description                                                               |
 | -------------------------------| ------------------------------------------------------------------------- |

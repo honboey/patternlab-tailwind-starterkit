@@ -13,8 +13,8 @@ These instructions are for getting the project running of a local development en
 
 ### System Requirements
 
-- [Node.js](https://nodejs.org) (v10.15.3 LTS or later recommended)
-- [Yarn](https://yarnpkg.com) (v1.16.0 or later)
+- [Node.js](https://nodejs.org) (v12.14.1 LTS or later recommended)
+- [Yarn](https://yarnpkg.com) (v1.21.1 or later)
 
 ### Install and Run
 
@@ -33,14 +33,14 @@ The `yarn` command will install project dependencies and the `yarn start` comman
 The build command compiles the styleguide CSS and the Patternlab output but it doesn't create a server the styleguide website. To build, run:
 
 ```
-npm run build
+yarn run build
 ```
 
 ## Configuring Tailwind
 
 Tailwind CSS comes with default configuration that sets up things like scales for typography, spacing and colours but these defaults and additional configuration can be made by editing the `tailwind.config.js` file in the project root.
 
-> **Note**: if changes to configuration or custom components aren't appearing you may need to rebuild/restart Patternlab. Use `control + c` to stop Gulp and `npm start` to rebuild and start the dev server for Patternlab.
+> **Note**: if changes to configuration or custom components aren't appearing you may need to rebuild/restart Patternlab. Use `control + c` to stop Gulp and `yarn start` to rebuild and start the dev server for Patternlab.
 
 Find out more at the [Tailwind website](https://tailwindcss.com/docs/configuration).
 

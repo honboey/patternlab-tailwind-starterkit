@@ -22,7 +22,7 @@ It's Javascript all the way down so once you have the the system requirements yo
 
 ```
 yarn
-yarn start
+yarn develop
 ```
 
 The `yarn` command will install project dependencies and the `yarn start` command builds the project, sets up a local server for the Patternlab UI and watches relevant template files to rebuild on any changes.

@@ -40,7 +40,7 @@ yarn run build
 
 Tailwind CSS comes with default configuration that sets up things like scales for typography, spacing and colours but these defaults and additional configuration can be made by editing the `tailwind.config.js` file in the project root.
 
-> **Note**: if changes to configuration or custom components aren't appearing you may need to rebuild/restart Patternlab. Use `control + c` to stop Gulp and `yarn start` to rebuild and start the dev server for Patternlab.
+> **Note**: if changes to configuration or custom components aren't appearing you may need to rebuild/restart Patternlab. Use `control + c` to stop Gulp and `yarn develop` to rebuild and start the dev server for Patternlab.
 
 Find out more at the [Tailwind website](https://tailwindcss.com/docs/configuration).
 

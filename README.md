@@ -5,7 +5,7 @@
 
 ## Getting Started
 
-These instructions are for getting the project running of a local development environment:
+These instructions are for getting the project running off a local development environment:
 
 - Install any system requirements on your dev environment
 - Use Yarn to install project dependencies and build the project 
@@ -30,7 +30,7 @@ The `yarn` command will install project dependencies and the `yarn start` comman
 
 ### Build
 
-The build command compiles the styleguide CSS and the Patternlab output but it doesn't create a server the styleguide website. To build, run:
+The build command compiles the styleguide CSS and the Patternlab output but it doesn't create a server for the styleguide website. To build, run:
 
 ```
 yarn run build
@@ -96,13 +96,13 @@ gulp.task('tailwind-postcss:production', function(){
 
 ## Configuring Patternlab
 
-The poject has Patternlab setup to use the Tailwind CSS output but you can add additional CSS or JS to the Patternlab styleguide as you need.
+The project has Patternlab setup to use the Tailwind CSS output but you can add additional CSS or JS to the Patternlab styleguide as you need.
 
-The existing CSS output file (sytle.css) is linked in the `_00-head.mustache` template file located at /sources/_meta.
+The existing CSS output file (sytle.css) is linked in the `_00-head.mustache` template file located at `/sources/_meta`.
 
 You can add additional Javascript files to `/sources/js` and then link them into the header and footer templates located at `/sources/_meta`.
 
-Find out more at the [Patternlab website](https://patternlab.io/docs/index.html)
+Find out more at the [Patternlab website](https://patternlab.io/docs/index.html).
 
 
 ## Background
